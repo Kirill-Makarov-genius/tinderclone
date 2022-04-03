@@ -2,6 +2,7 @@
 html, body{
     margin: 0;
     padding: 0;
+    text-align: center
 }
 *{
     font-family: "Readex Pro", sans-serif;
@@ -128,6 +129,9 @@ nav .logo-container .logo{
 
 /* --------- OnBoarding Page --------- */
 
+.onboarding{
+    border-top: solid 2px #b6b3b3;
+}
 
 .onboarding form{
     display: flex;
@@ -176,6 +180,10 @@ nav .logo-container .logo{
 .onboarding form input[type="radio"]{
     display: none;
 }
+.onboarding form input[type="number"]{
+    width: 30%;
+}
+
 .onboarding form input[type="radio"]:checked + label{
     border: solid 2px #dd2716;
 }
@@ -186,14 +194,116 @@ nav .logo-container .logo{
     background-color: rgb(226, 115, 115);
 }
 
+.onboarding form .photo-container img{
+    width: 100%;
+}
+
+/* --------- Dashboard Page --------- */
+
+.dashboard{
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboard .swipe-container{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.dashboard .card-container{
+    position: relative;
+    width: 400px;
+    height:  650px;
+}
+
+.swipe{
+    position: absolute;
+}
 
 
+.card{
+    position: relative;
+    width: 400px;
+    height: 650px;
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+}
 
+.card h3 {
+    margin-top: 0px;
+}
 
+.dashboard .swipe-info{
+    position: absolute;
+    bottom: -50px;
+    padding-left: 7.5em;
+}
 
+/* --------- Chat Container --------- */
 
+.chat-container{
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    width: 30%;
+    text-align: left;
+    z-index: 1;
 
+}
+.chat-container .chat-container-header{
+    background:  linear-gradient(45deg, #fe3072, #ff5940);
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.chat-container .option{
+    border: none;
+    background-color: #fff;
+    border-bottom: solid 4px #f32121;
+    font-size: 20px;
+    margin: 2px;
+    padding: 10px;
+}
 
+.chat-container .option:disabled{
+    border-bottom: solid 4px #bbbbbb;
+}
+.chat-container .profile,
+.chat-container .log-out-icon{
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    padding: 20px
+}
+.img-container{
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 10px;
+}
+.img-container{
+    width: 100%;
+}
+
+/* --------- Chat Display --------- */
+.chat-display{
+    padding: 20px;
+    height: 65vh;
+    overflow-y: auto;
+}
+
+.chat-input{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
 
 
 

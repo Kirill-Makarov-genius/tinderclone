@@ -3,12 +3,35 @@ import Nav from "../components/Nav";
 
 function Onboarding(){
 
+    const [formData, setFormData] = useState({
+        user_id: "",
+        first_name: "",
+        dob_day: "",
+        dob_month: "",
+        dob_year: "",
+        show_gender: false,
+        gender_identity: "man",
+        gender_interest: "woman",
+        email: "",
+        url: "",
+        about: "",
+        mathces: []
+    })
+
+
     function handleSubmit(){
         console.log("sumbitted");
     }
 
-    function handleChange(){
-        console.log("change");
+    function handleChange(e){
+        const value = e.target.type === "checkbox" ? e.target.checked : e.target.value
+        const name = e.target.name;
+
+        setFormData((prevState) => ({
+            ...prevState,
+            [name]: value
+        }))
+        console.log(formData);
     }
 
     return(
@@ -29,7 +52,7 @@ function Onboarding(){
                             name="first_name"
                             placeholder="First Name"
                             required={true}
-                            value={""}
+                            value={formData.first_name}
                             onChange={handleChange}
                         />
                         <label>Birthday</label>
@@ -40,7 +63,7 @@ function Onboarding(){
                                 name="dob_day"
                                 placeholder="DD"
                                 required={true}
-                                value={""}
+                                value={formData.dob_day}
                                 onChange={handleChange}
                             />
                             <input
@@ -49,7 +72,7 @@ function Onboarding(){
                                 name="dob_month"
                                 placeholder="MM "
                                 required={true}
-                                value={""}
+                                value={formData.dob_month}
                                 onChange={handleChange}
                             />
                             <input
@@ -58,7 +81,7 @@ function Onboarding(){
                                 name="dob_year"
                                 placeholder="YYYY"
                                 required={true}
-                                value={""}
+                                value={formData.dob_year}
                                 onChange={handleChange}
                             />
                         </div>
@@ -71,7 +94,7 @@ function Onboarding(){
                                 name="gender_identity"
                                 value="man"
                                 onChange={handleChange}
-                                checked={false}
+                                checked={formData.gender_identity === "man"}
                             />
                             <label htmlFor="man-gender-identity">Man</label>
                             
@@ -81,7 +104,7 @@ function Onboarding(){
                                 name="gender_identity"
                                 value="woman"
                                 onChange={handleChange}
-                                checked={false}
+                                checked={formData.gender_identity === "woman"}
                             />
                             <label htmlFor="woman-gender-identity">Woman</label>
                             <input
@@ -90,7 +113,7 @@ function Onboarding(){
                                 name="gender_identity"
                                 value="more"
                                 onChange={handleChange}
-                                checked={false}
+                                checked={formData.gender_identity === "more"}
                             />
                             <label htmlFor="more-gender-identity">More</label>
                         </div>
@@ -101,18 +124,18 @@ function Onboarding(){
                             name="show_gender"
                             value="more"
                             onChange={handleChange}
-                            checked={false}
+                            checked={formData.show_gender}
                         />
                         <label>Show me</label>
                         <div className="multiple-input-container">
                             
                             <input
-                                id="gender-interest"
+                                id="man-gender-interest"
                                 type="radio"
                                 name="gender_interest"
                                 value="man"
                                 onChange={handleChange}
-                                checked={false}
+                                checked={formData.gender_interest === "man"}
                             />
                             <label htmlFor="man-gender-interest">Man</label>
                             
@@ -122,7 +145,7 @@ function Onboarding(){
                                 name="gender_interest"
                                 value="woman"
                                 onChange={handleChange}
-                                checked={false}
+                                checked={formData.gender_interest === "woman"}
                             />
                             <label htmlFor="woman-gender-interest">Woman</label>
                             
@@ -132,7 +155,7 @@ function Onboarding(){
                                 name="gender_interest"
                                 value="everyone"
                                 onChange={handleChange}
-                                checked={false}
+                                checked={formData.gender_interest === "everyone"}
                             />
                             <label htmlFor="everyone-gender-interest">Everyone</label>
                         </div>
@@ -144,7 +167,7 @@ function Onboarding(){
                                 name="about"
                                 required={true}
                                 placeholder="I like long walks..."
-                                value={""}
+                                value={formData.about}
                                 onChange={handleChange}
                             />
                         <input type="submit"/>
@@ -159,7 +182,7 @@ function Onboarding(){
                                 required={true}
                             />
                             <div className="photo-container">
- 
+                                <img src={formData.url} alt="profile pic review"/>
                             </div>
                     </section>
                 </form>
