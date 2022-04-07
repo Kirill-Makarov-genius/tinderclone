@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom"
+import { useCookies } from "react-cookie"
 import axios from "axios";
 
 function AuthModel ({ setShowModel, isSignUp }){
@@ -8,7 +9,9 @@ function AuthModel ({ setShowModel, isSignUp }){
     const [password, setPassword] = useState(null);
     const [confirmPassword, setConfirmPassword] = useState(null);
     const [error, setError] = useState(null);
-    
+    const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+
+
     const navigate = useNavigate();
 
     function handleClick() {
@@ -16,17 +19,20 @@ function AuthModel ({ setShowModel, isSignUp }){
     }
 
     async function handleSubmit(e){
-        e.preventDefault();
+        e.preventDefault(); 
         try{
             if (isSignUp && (password !== confirmPassword)){
                 setError("Passwords need to match!")
                 return
             }
             
-            const response = await axios.post("http://localhost:8000/signup", { email, password })
+            const response = await axios.post(`http://localhost:8000/${isSignUp ? "signup" : "login"}`, { email, password })
             
-            const success = response.status === 201
-            if (success) navigate("/onboarding")
+            setCookie("UserId", response.data.userId)
+            setCookie("AuthToken", response.data.token)
+
+            if (response.status === 201 && isSignUp) navigate("/onboarding")
+            if (response.status === 201 && !isSignUp) navigate("/dashboard")
 
         } catch(error){
             console.log(error);
